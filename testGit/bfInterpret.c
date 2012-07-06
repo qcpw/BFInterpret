@@ -1,6 +1,8 @@
 #include "stdio.h"
 #include "stdlib.h"
 
+//a comment to test that changes are committed
+
 typedef struct {
 
   int numCells;

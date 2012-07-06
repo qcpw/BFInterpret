@@ -1,3 +1,0 @@
-
-* direct matching
-  scan over string with a sliding window and test to see if contents match.

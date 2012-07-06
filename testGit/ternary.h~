@@ -1,5 +1,0 @@
-typedef struct {
-  typedef struct{
-    
-  } node;
-} ternaryTree;

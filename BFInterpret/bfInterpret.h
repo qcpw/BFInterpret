@@ -1,65 +1,69 @@
 typedef struct {
+  //what are the purposes of these variables? comments would be nice
 
+  //why was 4000 chosen as a size for the arrays? It seems arbitrary
   int numCells;
   int openedLoops;
-  
   int values[4000];
-
   int* cells;
   int execute;
   char* positions[4000];
-
-
 } machine;
 
+//This creates a global instance. It would be better to create a local
+// instance in main, and pass a machine* to functions that currently
+// use this global machine.
 machine turing;
 
 void initMachine(int n){
   turing.numCells = n;
-
-  //this method doesn't work well because it makes it necessary to
-  //     keep track of the starting position of the cells. An array
-  //     does this automatically
-  //turing.cells = (int*) calloc(n+1, sizeof(int));
-
   turing.cells = turing.values;
   turing.openedLoops = 0;
   turing.execute = 1;
 }
 
+//simulate > in BF
 void moveRight(){
-  
     turing.cells++;
 }
 
+//simulate < in BF
 void moveLeft(){
     turing.cells--;
 }
 
+//simulate . in BF
 void printValue(){
     printf("%c",*(turing.cells));
 }
 
+//simulate + in BF
 void add(){
     *(turing.cells)+=1;
 }
 
+//simulate - in BF
 void subtract(){
     *(turing.cells)-=1;
 }
 
+//simulate , in BF
 void input(){
   char c;
   c = getchar();
   *(turing.cells) = c;
 }
 
+//simulate [ in BF
 void savePosition(char* ptr, int position){
   turing.positions[position] = ptr;
 }
+
+//simulate ] in BF
 char* retrievePosition(int position){
     return turing.positions[position];}
 
+//Convenience function that prints the values of all the machine's cells
 void printTape(){
   int ii;
   printf("\n");
@@ -68,6 +72,7 @@ void printTape(){
   }
 }
 
+//process input from a command line argument
 void argInput(char* c){
    
   while((int)*c != 0){
@@ -118,8 +123,7 @@ void argInput(char* c){
 
 }
 
-
-
+//safely get input interactively
 void getInput(){
   char buffer[4000];
   char *c = buffer;

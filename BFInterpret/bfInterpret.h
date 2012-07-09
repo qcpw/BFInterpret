@@ -4,18 +4,15 @@ typedef struct {
   //why was 4000 chosen as a size for the arrays? It seems arbitrary
   int numCells;
   int openedLoops;
-  int values[4000];
+  int* values;
   int* cells;
   int execute;
-  char* positions[4000];
+  char** positions;
 } machine;
 
-//This creates a global instance. It would be better to create a local
-// instance in main, and pass a machine* to functions that currently
-// use this global machine.
-//machine turing;
-
 void initMachine(int n, machine* turing){
+  turing->values = calloc(n, sizeof(char));
+  turing->positions = calloc(n, sizeof(char));
   turing->numCells = n;
   turing->cells = turing->values;
   turing->openedLoops = 0;

@@ -3,7 +3,8 @@
 #include "bfInterpret.h"
 
 int main(int argc, char ** argv){
-  initMachine(5);
+  machine turing;
+  initMachine(5, &turing);
 
   //printValue();
   
@@ -13,10 +14,10 @@ int main(int argc, char ** argv){
   }
 
   if(!strcmp(argv[1],"-i")){
-    getInput();
+    getInput(&turing); 
   }
   else
-    argInput(argv[1]);
+    argInput(argv[1], &turing);
   //getInput();
   //  printTape();
   printf("\n");
